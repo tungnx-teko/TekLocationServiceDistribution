@@ -1,0 +1,24 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target armv7-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -module-name TekLocationService
+import Foundation
+import Swift
+import TekCoreNetwork
+import TekCoreService
+@_exported import TekLocationService
+import TekServiceInterfaces
+public class LocationServiceFactory : TekCoreService.ServiceBuildable, TekCoreService.ServiceConfigAttachable {
+  public var config: TekCoreService.ServiceConfig?
+  required public init()
+  public func withConfig(_ config: TekCoreService.ServiceConfig)
+  public func createService() throws -> TekCoreService.AnyService
+  @objc deinit
+}
+@_inheritsConvenienceInitializers public class LocationService : TekCoreService.BaseService<TekCoreService.APIManager>, TekServiceInterfaces.ILocationService {
+  public func getProvinceList(handler: @escaping TekServiceInterfaces.GetAddressListHandler)
+  public func getDistrictList(provinceCode: Swift.String, handler: @escaping TekServiceInterfaces.GetAddressListHandler)
+  public func getWardList(districtCode: Swift.String, handler: @escaping TekServiceInterfaces.GetAddressListHandler)
+  public func getWardDetail(wardCode: Swift.String, handler: @escaping TekServiceInterfaces.GetWardDetailHandler)
+  @objc deinit
+  override public init(url: Foundation.URL, credential: TekCoreService.ServicesCredential? = super)
+}
